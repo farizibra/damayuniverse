@@ -8,13 +8,13 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-gold/20 bg-dark-navy backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Crown className="h-8 w-8 text-amber-500" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">
+          <div className="flex items-center space-x-3">
+            <Crown className="h-8 w-8 text-gold icon-glow" />
+            <span className="text-2xl font-bold text-gradient-gold font-display tracking-tight">
               DAMAY UNIVERSE
             </span>
           </div>
@@ -23,31 +23,31 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             <a
               href="#home"
-              className="text-sm font-medium hover:text-amber-500 transition-colors"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               Home
             </a>
             <a
               href="#about"
-              className="text-sm font-medium hover:text-amber-500 transition-colors"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               About
             </a>
             <a
               href="#members"
-              className="text-sm font-medium hover:text-amber-500 transition-colors"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               Members
             </a>
             <a
               href="#events"
-              className="text-sm font-medium hover:text-amber-500 transition-colors"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               Events
             </a>
             <a
               href="#contact"
-              className="text-sm font-medium hover:text-amber-500 transition-colors"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               Contact
             </a>
@@ -55,7 +55,7 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
-            <Button className="hidden md:inline-flex bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600">
+            <Button className="hidden md:inline-flex bg-gradient-gold hover:shadow-gold text-dark-navy font-bold transition-all duration-300 hover:scale-105 animate-shimmer">
               Join Family
             </Button>
 
@@ -63,7 +63,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden text-silver hover:text-gold hover:bg-transparent"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -77,41 +77,51 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/40">
-            <nav className="flex flex-col space-y-4">
+          <div className="md:hidden py-6 border-t border-gold/20 bg-dark-navy">
+            <nav className="flex flex-col space-y-6">
               <a
                 href="#home"
-                className="text-sm font-medium hover:text-amber-500 transition-colors"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </a>
               <a
                 href="#about"
-                className="text-sm font-medium hover:text-amber-500 transition-colors"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 About
               </a>
               <a
                 href="#members"
-                className="text-sm font-medium hover:text-amber-500 transition-colors"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Members
               </a>
               <a
                 href="#events"
-                className="text-sm font-medium hover:text-amber-500 transition-colors"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Events
               </a>
               <a
                 href="#contact"
-                className="text-sm font-medium hover:text-amber-500 transition-colors"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </a>
-              <Button className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600">
-                Join Family
-              </Button>
+              <div className="pt-4 border-t border-gold/20">
+                <Button
+                  className="w-full bg-gradient-gold text-dark-navy font-bold hover:shadow-gold transition-all duration-300 hover:scale-105"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Join Family
+                </Button>
+              </div>
             </nav>
           </div>
         )}
