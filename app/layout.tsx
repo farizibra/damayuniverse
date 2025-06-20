@@ -2,7 +2,6 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header/header";
 import { Footer } from "@/components/footer/footer";
 
@@ -20,20 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body
+        className={`${inter.className} bg-black text-white`}
+        suppressHydrationWarning
+      >
+        <div className="min-h-screen flex flex-col bg-black">
+          <Header />
+          <main className="flex-1 bg-black">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
