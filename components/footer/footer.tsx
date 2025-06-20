@@ -13,41 +13,23 @@ export function Footer() {
                 DAMAY UNIVERSE
               </span>
             </div>
-            <p className="text-silver-dark mb-4 max-w-md">
+            {/* <p className="text-silver-dark mb-4 max-w-md">
               An exclusive community where loyalty, respect, and brotherhood
               define our legacy. Join the family and become part of something
               greater.
-            </p>
+            </p> */}
             <div className="flex space-x-4">
-              <a
+              {/* <a
                 href="#"
                 className="text-silver-dark hover:text-gold transition-colors hover:scale-110 transform"
               >
-                <Instagram className="h-5 w-5 hover:icon-glow-soft" />
-              </a>
-              <a
-                href="#"
-                className="text-silver-dark hover:text-gold transition-colors hover:scale-110 transform"
-              >
-                <Twitter className="h-5 w-5 hover:icon-glow-soft" />
-              </a>
-              <a
-                href="#"
-                className="text-silver-dark hover:text-gold transition-colors hover:scale-110 transform"
-              >
-                <Youtube className="h-5 w-5 hover:icon-glow-soft" />
-              </a>
-              <a
-                href="#"
-                className="text-silver-dark hover:text-gold transition-colors hover:scale-110 transform"
-              >
-                <Mail className="h-5 w-5 hover:icon-glow-soft" />
-              </a>
+                <Instagram className="h-7 w-7 hover:icon-glow-soft" />
+              </a> */}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4 text-gradient-gold font-display">
               Quick Links
             </h3>
@@ -85,7 +67,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact */}
           <div>
@@ -93,17 +75,27 @@ export function Footer() {
               Contact
             </h3>
             <ul className="space-y-2 text-silver-dark">
-              <li>Email: family@damayuniverse.com</li>
-              <li>Discord: DamayUniverse#1947</li>
-              <li>Location: Worldwide</li>
+              <li>Email: admin@damayuniverse.com</li>
+              <li>
+                Instagram:{" "}
+                <a
+                  href="https://instagram.com/damaysk_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold underline"
+                >
+                  @damaysk_
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gold/20 mt-8 pt-8 text-center">
           <p className="text-silver-dark">
-            © 2024 Damay Universe. All rights reserved. | Family. Loyalty.
-            Respect.
+            © 2024{" "}
+            <a href="https://aizsz.damayuniverse.com">Fariz ibra pahlawan</a>.
+            All rights reserved.
           </p>
         </div>
       </div>

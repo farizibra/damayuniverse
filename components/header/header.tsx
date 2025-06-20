@@ -28,22 +28,16 @@ export function Header() {
               Home
             </a>
             <a
+              href="/football"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
+            >
+              Football
+            </a>
+            <a
               href="#about"
               className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               About
-            </a>
-            <a
-              href="#members"
-              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
-            >
-              Members
-            </a>
-            <a
-              href="#events"
-              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
-            >
-              Events
             </a>
             <a
               href="#contact"
@@ -55,9 +49,9 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
-            <Button className="hidden md:inline-flex bg-gradient-gold hover:shadow-gold text-dark-navy font-bold transition-all duration-300 hover:scale-105 animate-shimmer">
+            {/* <Button className="hidden md:inline-flex bg-gradient-gold hover:shadow-gold text-dark-navy font-bold transition-all duration-300 hover:scale-105 animate-shimmer">
               Join Family
-            </Button>
+            </Button> */}
 
             {/* Mobile menu button */}
             <Button
@@ -87,25 +81,18 @@ export function Header() {
                 Home
               </a>
               <a
+                href="/football"
+                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Football
+              </a>
+              <a
                 href="#about"
                 className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
-              </a>
-              <a
-                href="#members"
-                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Members
-              </a>
-              <a
-                href="#events"
-                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Events
               </a>
               <a
                 href="#contact"
@@ -115,12 +102,12 @@ export function Header() {
                 Contact
               </a>
               <div className="pt-4 border-t border-gold/20">
-                <Button
+                {/* <Button
                   className="w-full bg-gradient-gold text-dark-navy font-bold hover:shadow-gold transition-all duration-300 hover:scale-105"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Join Family
-                </Button>
+                </Button> */}
               </div>
             </nav>
           </div>

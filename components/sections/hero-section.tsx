@@ -24,23 +24,23 @@ export function HeroSection() {
         </h1>
 
         <p className="text-xl sm:text-2xl text-silver mb-8 max-w-2xl mx-auto leading-relaxed">
-          Where legends are born, loyalty is earned, and respect is everything.
+          -WE COME IN PEACE-
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button
+            asChild
             size="lg"
             className="bg-gradient-gold hover:shadow-gold text-dark-navy font-bold px-8 py-3 text-lg transition-all duration-300 hover:scale-105 animate-shimmer"
           >
-            <Crown className="mr-2 h-5 w-5" />
-            Join the Family
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-gold text-gold hover:bg-gold hover:text-dark-navy px-8 py-3 text-lg transition-all duration-300 hover:scale-105"
-          >
-            Learn More
+            <a
+              href="https://instagram.com/damaysk_"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Crown className="mr-2 h-5 w-5" />
+              Contact Us
+            </a>
           </Button>
         </div>
       </div>
