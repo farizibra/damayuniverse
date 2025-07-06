@@ -75,7 +75,7 @@ export function Footer() {
               Contact
             </h3>
             <ul className="space-y-2 text-silver-dark">
-              <li>Email: admin@damayuniverse.com</li>
+              <li>Email: damaysk@gmail.com</li>
               <li>
                 Instagram:{" "}
                 <a
@@ -93,9 +93,12 @@ export function Footer() {
 
         <div className="border-t border-gold/20 mt-8 pt-8 text-center">
           <p className="text-silver-dark">
-            © 2024{" "}
+            ©2025 <a href="https://damayuniverse.com">DamayUniverse</a>. All
+            rights reserved.
+          </p>
+          <p className="text-silver-dark hidden sm:block">
+            Created by:{" "}
             <a href="https://aizsz.damayuniverse.com">Fariz ibra pahlawan</a>.
-            All rights reserved.
           </p>
         </div>
       </div>

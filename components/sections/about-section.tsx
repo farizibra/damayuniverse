@@ -1,34 +1,47 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Crown, Shield, Users } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { Crown, Users, Gamepad2, ShoppingCart } from "lucide-react";
 
 export function AboutSection() {
   const values = [
     {
-      icon: Shield,
-      title: "Loyalty",
-      description: "Once family, always family. Our bonds are unbreakable and our commitment unwavering.",
+      icon: Crown,
+      title: "Society",
+      description:
+        "Once family, always family. Our bonds are unbreakable and our commitment unwavering.",
     },
     {
-      icon: Crown,
-      title: "Respect",
-      description: "Earned through actions, maintained through honor. Respect is the currency of our realm.",
+      icon: ShoppingCart,
+      title: "Merchandise",
+      description:
+        "Wear your loyalty with pride. Our exclusive merchandise is a symbol of our unity and strength.",
     },
     {
       icon: Users,
-      title: "Brotherhood",
-      description: "United we stand, divided we fall. Together, we build an empire that lasts forever.",
+      title: "Football",
+      description:
+        "On the field, we are warriors. Off the field, we are brothers. Together, we conquer every challenge.",
     },
-  ]
+    {
+      icon: Gamepad2,
+      title: "Gaming",
+      description:
+        "In the world of gaming, we are not just players; we are legends. Join us in the arena of champions.",
+    },
+  ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-deep-blue to-midnight">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-b from-deep-blue to-midnight"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 font-display">
             <span className="text-gradient-gold">The Family Code</span>
           </h2>
           <p className="text-xl text-silver max-w-3xl mx-auto">
-            Built on the pillars of loyalty, respect, and brotherhood. We are more than a community - we are family.
+            Built on the pillars of loyalty, respect, and brotherhood. We are
+            more than a community - we are family.
           </p>
         </div>
 
@@ -40,7 +53,9 @@ export function AboutSection() {
             >
               <CardContent className="p-8 text-center">
                 <value.icon className="h-12 w-12 text-gold mx-auto mb-4 group-hover:scale-110 transition-transform icon-glow group-hover:icon-glow-strong" />
-                <h3 className="text-2xl font-bold text-gradient-silver mb-4 font-display">{value.title}</h3>
+                <h3 className="text-2xl font-bold text-gradient-silver mb-4 font-display">
+                  {value.title}
+                </h3>
                 <p className="text-silver-dark">{value.description}</p>
               </CardContent>
             </Card>
@@ -48,5 +63,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
