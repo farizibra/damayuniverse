@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Crown } from "lucide-react";
+import Image from "next/image";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,21 +13,19 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <Crown className="h-8 w-8 text-gold icon-glow" />
-            <span className="text-2xl font-bold text-gradient-gold font-display tracking-tight">
-              DAMAY UNIVERSE
-            </span>
+          <div className="flex items-center">
+            <Image
+              src="/images/damay-logo.png" // Ganti dengan path logo Anda
+              alt="DAMAY UNIVERSE"
+              width={140} // Lebar logo (sesuaikan dengan kebutuhan)
+              height={80} // Tinggi logo (rasio 2:1)
+              className="h-auto w-auto max-h-10 sm:max-h-12" // Responsive sizing
+              priority // Untuk loading yang lebih cepat
+            />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
-            >
-              Home
-            </a>
             <a
               href="/football"
               className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
@@ -40,10 +39,10 @@ export function Header() {
               About
             </a>
             <a
-              href="#contact"
+              href="/merchandise"
               className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
-              Contact
+              Merchandise
             </a>
           </nav>
 
@@ -74,7 +73,7 @@ export function Header() {
           <div className="md:hidden py-6 border-t border-gold/20 bg-dark-navy">
             <nav className="flex flex-col space-y-6">
               <a
-                href="#home"
+                href="/"
                 className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -95,11 +94,11 @@ export function Header() {
                 About
               </a>
               <a
-                href="#contact"
+                href="/merchandise"
                 className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                Merchandise
               </a>
               <div className="pt-4 border-t border-gold/20">
                 {/* <Button
