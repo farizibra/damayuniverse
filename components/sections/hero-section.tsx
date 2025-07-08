@@ -14,7 +14,7 @@ export function HeroSection() {
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         {/* Crown icon with glow */}
         <div className="mb-2 flex justify-center">
-          <Crown className="h-20 w-20 sm:h-24 sm:w-24 text-gold icon-glow animate-pulse" />
+          <Crown className="h-20 w-20 sm:h-24 sm:w-24 animate-pulse" />
         </div>
 
         <div className="mb-2">
@@ -28,14 +28,9 @@ export function HeroSection() {
           />
         </div>
 
-        {/* Tagline */}
-        <p className="text-lg sm:text-xl lg:text-2xl text-silver mb-12 font-medium tracking-wide">
-          -WE COME IN PEACE-
-        </p>
-
         {/* CTA Button */}
         <Button
-          className="bg-gradient-gold hover:shadow-gold text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 animate-shimmer inline-flex items-center gap-2"
+          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:shadow-blue-500/25 text-white font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 animate-shimmer inline-flex items-center gap-2"
           size="lg"
         >
           <Mail className="h-5 w-5" />

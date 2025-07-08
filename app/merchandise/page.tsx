@@ -16,60 +16,37 @@ import {
   Minus,
   Plus,
 } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 
 const tshirtProducts = [
   {
     id: 1,
-    name: "DamaySK Reborn",
+    name: "T-Shirt 404 Not Found",
     price: 149.999,
-    images: [
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Reborn+Depan",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Reborn+Belakang",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Reborn+Samping",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Reborn+Detail",
-    ],
-    colors: ["Hitam", "putih"],
+    images: ["/images/t-shirt/1.png", "/images/t-shirt/2.png"],
+    colors: ["Hitam"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     rating: 5.0,
     reviews: 20,
     description:
-      "DamaySK Reborn adalah kaos katun premium dengan desain yang terinspirasi dari Gengster, memberikan sentuhan futuristik pada gaya sehari-hari.",
+      "404 Not Found adalah kaos katun premium dengan desain yang terinspirasi dari tema teknologi dan internet, memberikan sentuhan modern pada gaya sehari-hari.",
   },
   {
     id: 2,
-    name: "Jersey Damay Football",
+    name: "Gravewood T-Shirt",
     price: 149.999,
     images: [
-      "/placeholder.svg?height=600&width=600&text=Jersey+Damay+Football+Depan",
-      "/placeholder.svg?height=600&width=600&text=Jersey+Damay+Football+Belakang",
-      "/placeholder.svg?height=600&width=600&text=Jersey+Damay+Football+Samping",
-      "/placeholder.svg?height=600&width=600&text=Jersey+Damay+Football+Detail",
+      "/images/t-shirt/Gravewood.webp",
+      "/images/t-shirt/GravewoodFront.webp",
+      "/images/t-shirt/Sacred-Shadow.webp",
+      "/images/t-shirt/SacredShadow.webp",
     ],
-    colors: ["Hitam", "putih"],
+    colors: ["Brown", "Hitam"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     rating: 5.0,
     reviews: 20,
     description:
-      "Jersey Damay Football adalah jersey katun premium dengan desain yang terinspirasi dari dunia sepak bola, memberikan kenyamanan dan gaya di lapangan.",
-  },
-  {
-    id: 3,
-    name: "DamaySK Gangster",
-    price: 149.999,
-    images: [
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Gangster+Depan",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Gangster+Belakang",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Gangster+Samping",
-      "/placeholder.svg?height=600&width=600&text=DamaySK+Gangster+Detail",
-    ],
-    colors: ["Hitam", "putih"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    rating: 5.0,
-    reviews: 20,
-    description:
-      "DamaySK Gangster adalah kaos katun premium dengan desain yang terinspirasi dari budaya gangster, memberikan sentuhan edgy pada gaya sehari-hari.",
+      "Gravewood T-shirt adalah kaos katun premium dengan desain yang terinspirasi dari tema horor, memberikan sentuhan misterius pada gaya sehari-hari.",
   },
 ];
 
@@ -124,7 +101,7 @@ function SwipeableImageGallery({
   return (
     <div className="relative group">
       <div
-        className="relative overflow-hidden rounded-xl sm:rounded-2xl aspect-square bg-slate-900/30 border border-indigo-500/20"
+        className="relative overflow-hidden rounded-xl sm:rounded-2xl aspect-square bg-white border border-indigo-500/20"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
