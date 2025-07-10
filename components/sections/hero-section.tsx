@@ -30,11 +30,18 @@ export function HeroSection() {
 
         {/* CTA Button */}
         <Button
+          asChild
           className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:shadow-blue-500/25 text-white font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 animate-shimmer inline-flex items-center gap-2"
           size="lg"
         >
-          <Mail className="h-5 w-5" />
-          Contact Us
+          <a
+            href="https://www.instagram.com/damaysk_?igsh=eDc0MnRrdWxweDZr" // Ganti username dengan username Instagram kamu
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Mail className="h-5 w-5" />
+            Contact Us
+          </a>
         </Button>
       </div>
 

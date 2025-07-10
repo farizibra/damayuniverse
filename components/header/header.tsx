@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Crown } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,29 +15,31 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Image
-              src="/images/damay-logo.png" // Ganti dengan path logo Anda
-              alt="DAMAY UNIVERSE"
-              width={140} // Lebar logo (sesuaikan dengan kebutuhan)
-              height={80} // Tinggi logo (rasio 2:1)
-              className="h-auto w-auto max-h-10 sm:max-h-12" // Responsive sizing
-              priority // Untuk loading yang lebih cepat
-            />
+            <Link href="/">
+              <Image
+                src="/images/damay-logo.png" // Ganti dengan path logo Anda
+                alt="DAMAY UNIVERSE"
+                width={140} // Lebar logo (sesuaikan dengan kebutuhan)
+                height={80} // Tinggi logo (rasio 2:1)
+                className="h-auto w-auto max-h-10 sm:max-h-12" // Responsive sizing
+                priority // Untuk loading yang lebih cepat
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a
+              href="/"
+              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
+            >
+              Home
+            </a>
+            <a
               href="/football"
               className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
             >
               Football
-            </a>
-            <a
-              href="#about"
-              className="text-sm font-medium text-silver hover:text-gold transition-all duration-300 hover:scale-105"
-            >
-              About
             </a>
             <a
               href="/merchandise"
@@ -85,13 +88,6 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Football
-              </a>
-              <a
-                href="#about"
-                className="text-base font-medium text-silver hover:text-gold transition-all duration-300 hover:translate-x-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
               </a>
               <a
                 href="/merchandise"

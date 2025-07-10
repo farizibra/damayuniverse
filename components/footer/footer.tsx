@@ -9,8 +9,12 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <Crown className="h-8 w-8 text-gold icon-glow" />
-              <span className="text-2xl font-bold text-gradient-gold font-display">
-                DAMAY UNIVERSE
+              <span className="text-2xl font-bold text-slate-100 leading-tight">
+                DAMAY
+                <span className="bg-gradient-to-r from-indigo-400 to-cyan-300 bg-clip-text text-transparent">
+                  {" "}
+                  UNIVERSE
+                </span>
               </span>
             </div>
             {/* <p className="text-silver-dark mb-4 max-w-md">
