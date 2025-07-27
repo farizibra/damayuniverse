@@ -6,7 +6,7 @@ export default function MerchandiseHeader() {
     <section className="pt-20 sm:pt-24 pb-12 sm:pb-16 px-4">
       <div className="container mx-auto text-center">
         <Badge className="mb-4 sm:mb-6 bg-indigo-500/20 text-indigo-300 border-indigo-400/30 shadow-lg shadow-indigo-500/10 text-xs sm:text-sm">
-          ✨ TOP 1 JAKARTA
+          ✨ TOP MERCH DI JAKARTA
         </Badge>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100 mb-4 sm:mb-6 leading-tight">
           DamaySK
