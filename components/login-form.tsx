@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/components/lib/api";
 
 export function LoginForm({
   className,
@@ -25,18 +26,8 @@ export function LoginForm({
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
     try {
-      const res = await fetch("/api/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error || "Login failed");
-      } else {
-        // Optionally: save token/session to localStorage or cookie
-        router.push("/dashboard");
-      }
+      await loginUser(email, password);
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {

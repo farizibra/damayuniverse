@@ -238,3 +238,11 @@ html {
     0 10px 20px rgba(59, 130, 246, 0.2);
   border-color: rgba(59, 130, 246, 0.5);
 }
+
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Webkit */
+}

@@ -11,7 +11,6 @@ export default async function AdminDashboardPage() {
   const { data, error } = await supabase.auth.getUser(token);
   if (error || !data.user) redirect("/admin");
 
-  // Fetch produk dari API dashboard
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const res = await fetch(`${baseUrl}/api/dashboard`, {
     headers: { Cookie: `sb-access-token=${token}` },

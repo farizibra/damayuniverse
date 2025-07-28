@@ -2,152 +2,161 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-
-interface EditProductFormProps {
-  product: Product;
-  onEditProduct: (product: Product) => void;
-  setOpen: (open: boolean) => void;
-}
-
-interface Product {
-  id: string;
-  photoUrl: string;
-  name: string;
-  price: number;
-  description: string;
-  color: string;
-  size: string;
-  stock: number;
-}
+import { useState } from "react";
+import { editProduct, Product } from "@/components/lib/api";
 
 export function EditProductForm({
   product,
   onEditProduct,
   setOpen,
-}: EditProductFormProps) {
-  const [formData, setFormData] = useState<Product>(product);
+}: {
+  product: Product;
+  onEditProduct: (product: Product) => void;
+  setOpen: (open: boolean) => void;
+}) {
+  const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>(product.photoUrls || []);
+  const [form, setForm] = useState<Omit<Product, "photoUrls">>({ ...product });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    setFormData(product); // Update form data if product prop changes
-  }, [product]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fs = Array.from(e.target.files || []);
+    setFiles(fs);
+    setPreviews([
+      ...(product.photoUrls || []),
+      ...fs.map((f) => URL.createObjectURL(f)),
+    ]);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]:
-        id === "price" || id === "stock"
-          ? Number.parseFloat(value) || 0
-          : value,
-    }));
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onEditProduct(formData);
+    setLoading(true);
+    setError(null);
+    let photoUrls: string[] = product.photoUrls ? [...product.photoUrls] : [];
+    try {
+      if (files.length > 0) {
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("file", file);
+          const res = await fetch("/api/dashboard/upload", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Upload gagal");
+          photoUrls.push(data.url);
+        }
+      }
+      const updated = { ...form, photoUrls };
+      await editProduct(updated);
+      onEditProduct(updated);
+      setOpen(false);
+    } catch (err: any) {
+      setError(err.message || "Gagal edit produk");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 py-4">
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="id" className="text-right">
-          ID
-        </Label>
-        <Input id="id" value={formData.id} className="col-span-3" disabled />
-      </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="photoUrl" className="text-right">
-          Photo URL
-        </Label>
-        <Input
-          id="photoUrl"
-          value={formData.photoUrl}
-          onChange={handleChange}
-          className="col-span-3"
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 max-h-[80vh] overflow-y-auto"
+    >
+      <div>
+        <label className="block mb-1 font-medium">Photos</label>
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleFileChange}
+          disabled={loading}
         />
+        <div className="flex flex-wrap gap-2 mt-2 pb-2">
+          {previews.map((src, i) => (
+            <img key={i} src={src} alt="Preview" className="max-h-32 rounded" />
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="name" className="text-right">
-          Name
-        </Label>
-        <Input
-          id="name"
-          value={formData.name}
+      <div>
+        <label className="block mb-1 font-medium">Name</label>
+        <input
+          name="name"
+          value={form.name}
           onChange={handleChange}
-          className="col-span-3"
           required
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="price" className="text-right">
-          Price
-        </Label>
-        <Input
-          id="price"
+      <div>
+        <label className="block mb-1 font-medium">Price</label>
+        <input
+          name="price"
           type="number"
-          value={formData.price}
+          value={form.price}
           onChange={handleChange}
-          className="col-span-3"
           required
-          step="0.01"
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="description" className="text-right">
-          Description
-        </Label>
-        <Textarea
-          id="description"
-          value={formData.description}
+      <div>
+        <label className="block mb-1 font-medium">Description</label>
+        <textarea
+          name="description"
+          value={form.description}
           onChange={handleChange}
-          className="col-span-3"
+          required
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="color" className="text-right">
-          Color
-        </Label>
-        <Input
-          id="color"
-          value={formData.color}
+      <div>
+        <label className="block mb-1 font-medium">Color</label>
+        <input
+          name="color"
+          value={form.color}
           onChange={handleChange}
-          className="col-span-3"
+          required
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="size" className="text-right">
-          Size
-        </Label>
-        <Input
-          id="size"
-          value={formData.size}
+      <div>
+        <label className="block mb-1 font-medium">Size</label>
+        <input
+          name="size"
+          value={form.size}
           onChange={handleChange}
-          className="col-span-3"
+          required
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="stock" className="text-right">
-          Stock
-        </Label>
-        <Input
-          id="stock"
+      <div>
+        <label className="block mb-1 font-medium">Stock</label>
+        <input
+          name="stock"
           type="number"
-          value={formData.stock}
+          value={form.stock}
           onChange={handleChange}
-          className="col-span-3"
           required
+          className="input"
+          disabled={loading}
         />
       </div>
-      <div className="flex justify-end">
-        <Button type="submit">Save Changes</Button>
-      </div>
+      {error && <div className="text-red-500 text-sm">{error}</div>}
+      <button type="submit" className="btn btn-primary" disabled={loading}>
+        {loading ? "Saving..." : "Save Changes"}
+      </button>
     </form>
   );
 }

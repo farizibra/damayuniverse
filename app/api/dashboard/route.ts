@@ -29,9 +29,10 @@ export async function POST(req: Request) {
   if (!auth)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json();
+  // Hanya simpan photoUrls (array), bukan photoUrl
   const { data, error } = await supabase
     .from("products")
-    .insert([body])
+    .insert([{ ...body, photoUrls: body.photoUrls }])
     .select();
   if (error)
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -48,7 +49,7 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: "Missing product id" }, { status: 400 });
   const { data, error } = await supabase
     .from("products")
-    .update(body)
+    .update({ ...body, photoUrls: body.photoUrls })
     .eq("id", body.id)
     .select();
   if (error)

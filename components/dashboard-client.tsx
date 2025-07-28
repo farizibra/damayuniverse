@@ -20,17 +20,13 @@ import {
 import { PlusCircle, Edit, Trash2 } from "lucide-react";
 import { AddProductForm } from "@/components/add-product-form";
 import { EditProductForm } from "@/components/edit-product-form";
-
-interface Product {
-  id: string;
-  photoUrl: string;
-  name: string;
-  price: number;
-  description: string;
-  color: string;
-  size: string;
-  stock: number;
-}
+import {
+  Product,
+  addProduct,
+  editProduct,
+  deleteProduct,
+  getProducts,
+} from "@/components/lib/api";
 
 export default function DashboardClient({
   products: initialProducts,
@@ -41,28 +37,45 @@ export default function DashboardClient({
   const [isAddProductDialogOpen, setIsAddProductDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleAddProduct = (newProduct: Omit<Product, "id">) => {
-    const id = `prod-${Date.now()}`; // Simple ID generation (client only)
-    setProducts((prev) => [...prev, { id, ...newProduct }]);
-    setIsAddProductDialogOpen(false);
-    // TODO: Call API POST /api/dashboard
+  const handleAddProduct = async (newProduct: Omit<Product, "id">) => {
+    setLoading(true);
+    const result = await addProduct(newProduct);
+    if (result) {
+      const fresh = await getProducts();
+      setProducts(fresh);
+      setIsAddProductDialogOpen(false);
+    } else {
+      alert("Gagal menambah produk");
+    }
+    setLoading(false);
   };
 
-  const handleEditProduct = (updatedProduct: Product) => {
-    setProducts((prev) =>
-      prev.map((product) =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      )
-    );
-    setIsEditDialogOpen(false);
-    setEditingProduct(null);
-    // TODO: Call API PUT /api/dashboard
+  const handleEditProduct = async (updatedProduct: Product) => {
+    setLoading(true);
+    const result = await editProduct(updatedProduct);
+    if (result) {
+      const fresh = await getProducts();
+      setProducts(fresh);
+      setIsEditDialogOpen(false);
+      setEditingProduct(null);
+    } else {
+      alert("Gagal edit produk");
+    }
+    setLoading(false);
   };
 
-  const handleDeleteProduct = (id: string) => {
-    setProducts((prev) => prev.filter((product) => product.id !== id));
-    // TODO: Call API DELETE /api/dashboard
+  const handleDeleteProduct = async (id: string) => {
+    setLoading(true);
+    const success = await deleteProduct(id);
+    if (success) {
+      const fresh = await getProducts();
+      setProducts(fresh);
+    } else {
+      alert("Gagal hapus produk");
+    }
+    setLoading(false);
   };
 
   const openEditDialog = (product: Product) => {
@@ -80,7 +93,7 @@ export default function DashboardClient({
             onOpenChange={setIsAddProductDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button size="sm" className="h-8 gap-1">
+              <Button size="sm" className="h-8 gap-1" disabled={loading}>
                 <PlusCircle className="h-3.5 w-3.5" />
                 <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                   Add Product
@@ -145,6 +158,7 @@ export default function DashboardClient({
                             size="sm"
                             className="h-8 w-8 p-0"
                             onClick={() => openEditDialog(product)}
+                            disabled={loading}
                           >
                             <Edit className="h-4 w-4" />
                             <span className="sr-only">Edit</span>
@@ -154,6 +168,7 @@ export default function DashboardClient({
                             size="sm"
                             className="h-8 w-8 p-0"
                             onClick={() => handleDeleteProduct(product.id)}
+                            disabled={loading}
                           >
                             <Trash2 className="h-4 w-4" />
                             <span className="sr-only">Delete</span>
