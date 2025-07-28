@@ -97,12 +97,12 @@ export function Header() {
                 Merchandise
               </a>
               <div className="pt-4 border-t border-gold/20">
-                {/* <Button
+                <Button
                   className="w-full bg-gradient-gold text-dark-navy font-bold hover:shadow-gold transition-all duration-300 hover:scale-105"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Join Family
-                </Button> */}
+                  Contact Us
+                </Button>
               </div>
             </nav>
           </div>

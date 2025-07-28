@@ -13,13 +13,13 @@ export function HeroSection() {
       {/* Main content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         {/* Crown icon with glow */}
-        <div className="mb-2 flex justify-center">
+        <div className="flex justify-center">
           <Crown className="h-20 w-20 sm:h-24 sm:w-24 animate-pulse" />
         </div>
 
         <div className="mb-2">
           <Image
-            src="/images/du.png" // Ganti dengan path logo Anda
+            src="/images/dmyuniverse.png" // Ganti dengan path logo Anda
             alt="DAMAY UNIVERSE"
             width={600} // Sesuaikan dengan ukuran logo Anda
             height={300} // Sesuaikan dengan rasio logo Anda
